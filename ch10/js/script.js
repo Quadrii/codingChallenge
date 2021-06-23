@@ -15,6 +15,7 @@ for (let i = 0; i < showModal.length; i++) {
 let closeModalFunction = function () {
     modal.classList.add('hidden');
 }
+
 closeModal.addEventListener('click', closeModalFunction);
 
 let keyDownClose = function (e) {
