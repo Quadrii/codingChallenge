@@ -20,7 +20,7 @@ let holdBtn = document.querySelector('.btn--hold');
 // diceBtn.classList.add('hidden');
 
 const init = function () {
-     totalScore = [0, 0];
+    totalScore = [0, 0];
     activePlayer = 0;
     currentScore = 0;
     playing = true;
@@ -69,11 +69,11 @@ holdBtn.addEventListener('click', function () {
         playing = false;
         diceBtn.classList.add('hidden');
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
+        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
     }else {
         switchPlayer();
     }
   }
 })
 
-newBtn.addEventListener('click', init)
+newBtn.addEventListener('click', init);
