@@ -1,4 +1,7 @@
 let tip;
+let bills = [125, 555, 44]
+
+// without Loop
 function calculateTips(billed) {
     if (billed >= 50 && billed <= 300) {
       tip =  billed * 0.5;
@@ -9,7 +12,6 @@ function calculateTips(billed) {
     }
 };
 
-// without Loop
 let tips = calculateTips(bills[0]);
  tips = calculateTips(bills[1]);
  tips = calculateTips(bills[2]);
@@ -24,15 +26,16 @@ console.log(totalBill);
 console.log(bill1);
 
 // Using forEach Loop
-let bills = [125, 555, 44]
-bills.forEach (function (billed) {
-  if (billed >= 50 && billed <= 300) {
-    tip =  billed * 0.5;
+bills.forEach (function (bill) {
+  if (bill >= 50 && bill <= 300) {
+    tip =  bill * 0.5;
     console.log(tip)
   }else {
-      tip = billed * 0.2;
+      tip = bill * 0.2;
       console.log(tip)
   }
+  let totalBill = tip + bill;
+  console.log(totalBill);
 })
 console.log(bills);
 
