@@ -37,6 +37,21 @@ bills.forEach (function (bill) {
   let totalBill = tip + bill;
   console.log(totalBill);
 })
+
+// Using forEach & arrow Function
+bills.forEach ( eachBill => {
+  if (eachBill >= 50 && eachBill <= 300) {
+    tip =  eachBill * 0.5;
+    console.log(tip)
+  }else {
+      tip = eachBill * 0.2;
+      console.log(tip)
+  }
+  let totalBill = tip + eachBill;
+  console.log(totalBill);
+})
+
+
 console.log(bills);
 
 
