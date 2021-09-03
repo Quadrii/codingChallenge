@@ -22,3 +22,15 @@ let toggleAction =
         return mov * converToUsd;
     })
     console.log(loopingWithMap);
+
+
+    // Map with arrow functions
+    let loopingWithMapArrowFunc = movements.map( mov => mov * converToUsd);
+    console.log(loopingWithMapArrowFunc)
+
+    // Using for of Loop
+    let converts = [];
+    for (const mov of movements) {
+        converts.push(mov * converToUsd);
+    }
+    console.log(converts)
