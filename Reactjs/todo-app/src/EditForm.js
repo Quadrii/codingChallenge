@@ -1,16 +1,17 @@
-import React from "react"
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import TodoFormHook from './hooks/TodoFormHook';
 
-function TodoForm (props) {
-	const [value, handleChange, reset] = TodoFormHook("");
+function EditTodoForm (props) {
+	const [value, handleChange, reset] = TodoFormHook(props.task);
 	return (
 		<Paper>
 			<form onSubmit={e => {
 				e.preventDefault();
-				props.addTodo(value);
+				props.editTodo(props.id, value);
 				reset();
+				props.toggleEdit()
 			}
 			}>
 				<TextField value={value} onChange={handleChange} label="Add New Todo" fullWidth />
@@ -19,4 +20,4 @@ function TodoForm (props) {
 	)
 }
 
-export default TodoForm;
+export default EditTodoForm;

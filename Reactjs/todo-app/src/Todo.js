@@ -1,12 +1,12 @@
 import React, {useState} from "react"; 
 import TodoList from "./TodoList";
 import Paper from "@material-ui/core/Paper";
+import { v4 as uuidv4 } from 'uuid';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TodoForm from "./TodoForm";
-
 
 function Todo () {
 	const initials = [
@@ -27,10 +27,31 @@ function Todo () {
 
 		}
 	];
+
 	const [todos, setTodos] = useState(initials);
 	const addTodo = newTodo => {
-		setTodos([...todos, {id:5, task: newTodo, completed: false}])
+		setTodos([...todos, {id:uuidv4(), task: newTodo, completed: false}])
 	}
+
+	const editTodo = (todoId, newTask) => {
+		const updatedTodo = todos.map(todo =>
+			todo.id === todoId ? {...todo, task: newTask} : todo
+		)
+		setTodos(updatedTodo);
+	}
+
+	const removeTodo = todoId => {
+		const updatedTodo = todos.filter(todo => todo.id != todoId)
+		setTodos(updatedTodo);
+	}
+
+	const toggleTodo = todoId => {
+		const updatedTodo = todos.map(todo =>
+			todo.id === todoId ? {...todo, completed: !todo.completed} : todo
+		)
+		setTodos(updatedTodo);
+	}
+
 	return (
 		<Paper elevation={0} style={{padding:0, margin:0, height:"100vh", background:"#fff"}}>
 			<AppBar position="static">
@@ -40,8 +61,12 @@ function Todo () {
 			    </Typography>
 			  </Toolbar>
 			</AppBar>
-			<TodoForm addTodo={addTodo}/>
-			<TodoList todos={todos}/>
+			<Grid container justify="center" style={{marginTop:"10px"}}>
+				<Grid item xs={11} md={8} lg={4}>
+					<TodoForm addTodo={addTodo} style={{paddingBottom:"10px"}}/>
+					<TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo } editTodo={editTodo}/>
+				</Grid>
+			</Grid>
 		</Paper>
 	)
 }
