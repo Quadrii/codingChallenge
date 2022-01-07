@@ -1,7 +1,7 @@
-import React, {useState} from "react"; 
+import React from "react";
+import FunctionHooks from "./hooks/FunctionHooks"; 
 import TodoList from "./TodoList";
 import Paper from "@material-ui/core/Paper";
-import { v4 as uuidv4 } from 'uuid';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -27,31 +27,8 @@ function Todo () {
 
 		}
 	];
-
-	const [todos, setTodos] = useState(initials);
-	const addTodo = newTodo => {
-		setTodos([...todos, {id:uuidv4(), task: newTodo, completed: false}])
-	}
-
-	const editTodo = (todoId, newTask) => {
-		const updatedTodo = todos.map(todo =>
-			todo.id === todoId ? {...todo, task: newTask} : todo
-		)
-		setTodos(updatedTodo);
-	}
-
-	const removeTodo = todoId => {
-		const updatedTodo = todos.filter(todo => todo.id != todoId)
-		setTodos(updatedTodo);
-	}
-
-	const toggleTodo = todoId => {
-		const updatedTodo = todos.map(todo =>
-			todo.id === todoId ? {...todo, completed: !todo.completed} : todo
-		)
-		setTodos(updatedTodo);
-	}
-
+	const {todos, addTodo, editTodo, removeTodo, toggleTodo} = FunctionHooks(initials);
+	
 	return (
 		<Paper elevation={0} style={{padding:0, margin:0, height:"100vh", background:"#fff"}}>
 			<AppBar position="static">
