@@ -1,16 +1,19 @@
-import React from 'react';
+import React,  {useContext} from 'react';
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import TodoComp from "./TodoComp";
+import {TodosContext} from "./context/todo.context";
 
-function TodoList (props) {
+
+function TodoList () {
+	const {todos} = useContext(TodosContext);
 	return (
 		<Paper>
 			{
-				props.todos.map(todo => (
+				todos.map(todo => (
 					<List>
-						<TodoComp task={todo.task} completed={todo.completed} key={todo.id} editTodo={props.editTodo} removeTodo={props.removeTodo} id={todo.id} toggleTodo={props.toggleTodo}
+						<TodoComp task={todo.task} completed={todo.completed} key={todo.id} id={todo.id} 
 						/>
 						<Divider/>
 					</List>
