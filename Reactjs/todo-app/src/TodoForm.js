@@ -6,14 +6,14 @@ import {TodosContext} from "./context/todo.context";
 
 function TodoForm () {
 	const [value, handleChange, reset] = TodoFormHook(""); 
-	const {addTodo} = useContext(TodosContext);
+	const {dispatch} = useContext(TodosContext);
 	return (
 		<Paper>
 			<form onSubmit={e => {
 				e.preventDefault();
-				addTodo(value);
+				dispatch({type: "ADD", task: value})
 				reset();
-			}
+				}
 			}>
 				<TextField value={value} onChange={handleChange} label="Add New Todo" fullWidth />
 			</form>

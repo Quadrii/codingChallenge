@@ -1,4 +1,5 @@
-import React, {createContext} from "react";
+import React, {createContext, useReducer} from "react";
+import TodoReducer from "../reducer/todo.reducer";
 import FunctionHooks from "../hooks/FunctionHooks";
 
 
@@ -24,9 +25,9 @@ const defaultTodo = [
 export const TodosContext = createContext();
 
 export function TodoProvider(props) {
-	const {todos, addTodo, editTodo, removeTodo, toggleTodo} = FunctionHooks(defaultTodo);
+	const [todos, dispatch ] = useReducer(TodoReducer, defaultTodo);
 	return (
-		<TodosContext.Provider value={{todos, addTodo, editTodo, removeTodo, toggleTodo}}>
+		<TodosContext.Provider value={{todos, dispatch}}>
 			{props.children}
 		</TodosContext.Provider>
 	)

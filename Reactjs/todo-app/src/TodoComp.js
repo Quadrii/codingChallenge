@@ -14,7 +14,7 @@ import {TodosContext} from "./context/todo.context";
 
 function TodoComp (props) {
 	const [isEditing, toggleEdit] = EditToggle(false);
-	const {removeTodo, toggleTodo} = useContext(TodosContext);
+	const {dispatch} = useContext(TodosContext);
 	return (
 
 		<ListItem>
@@ -23,12 +23,12 @@ function TodoComp (props) {
 					<EditTodoForm id={props.id} task={props.task} toggleEdit={toggleEdit} />
 				) : (
 				<>
-					<Checkbox tabIndex={-1} checked={props.completed} onClick={()=> toggleTodo(props.id)}/>
+					<Checkbox tabIndex={-1} checked={props.completed} onClick={()=> dispatch({type:"TOGGLE", id:props.id})}/>
 					<ListItemText style={{textDecoration: props.completed ? "line-through" : "none"}}>
 						{props.task}
 					</ListItemText>
 					<ListItemSecondaryAction>
-						<IconButton arial-label="Delete" onClick={()=> removeTodo(props.id)}>
+						<IconButton arial-label="Delete" onClick={()=> dispatch({type: "REMOVE", id:props.id})}>
 							<DeleteIcon/>
 						</IconButton>
 						<IconButton arial-label="Edit" onClick={toggleEdit}>
